@@ -8,10 +8,10 @@ env:
 phases:
   install:
    commands:
-    - apt-get update
-    - apt-get install maven
-    - apt-get install wget
-    - apt-get install tar
+    - apt-get  update -y
+    - apt-get install maven -y
+    - apt-get install wget -y
+    - apt-get install tar -y
   pre_build:
    commands:
     - wget https://dlcdn.apache.org/maven/maven-3/3.8.7/binaries/apache-maven-3.8.7-bin.tar.gz -p /opt/
