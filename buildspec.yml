@@ -1,12 +1,22 @@
 version: 0.2
-
+env:
+  variables:
+     JAVA_HOME: "/opt/jdk1.8.0_131"
+     JRE_HOME: "/opt/jdk1.8.0_131/jre"
+     PATH: "$PATH:/opt/jdk1.8.0_131/bin:/opt/jdk1.8.0_131/jre/bin"
+     PATH: "$PATH:/opt/apache-maven-3.5.0/bin"
 phases:
+  install:
+   commands:
+    - apt-get update
+    - apt-get install maven
+    - apt-get install wget
+    - apt-get install tar
+  pre_build:
+   commands:
+    - wget https://dlcdn.apache.org/maven/maven-3/3.8.7/binaries/apache-maven-3.8.7-bin.tar.gz -p /opt/
+    - tar -zxvf /opt/apache-maven-3.8.7-bin.tar.gz
   build:
-    commands:
-      - echo Entered the build phase...
-      - echo Build started on `date`
-      - mvn clean package 
-  post_build:
-    commands:
-      - echo Build completed successfully
-      
+   commands:
+    - mvn clean package
+  
